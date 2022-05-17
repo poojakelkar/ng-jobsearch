@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const Error = () => {
     return (
         <Wrapper className='full-page'>
-            <div className=''>
+            <div>
                 <img src={errorImg} alt='error' className='img'></img>
-                <h2>Ohh! Page Not Fount</h2>
+                <h2 className='title'>Ohh! Page Not Found</h2>
                 <Link to='/landing'>
                     <h3>Back to Home</h3>
                 </Link>
