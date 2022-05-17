@@ -21,7 +21,7 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { name, email, password, isPerson } = value;
-        if (!email || !password) {
+        if (!email || !password || (!isPerson && !name)) {
             console.log("please");
         }
     };
@@ -31,7 +31,7 @@ const Register = () => {
     };
     return (
         <Wrapper className='full-page'>
-            <form className='form' onClick={handleSubmit}>
+            <form className='form' onSubmit={handleSubmit}>
                 <Logo />
                 <h1 className='title'>
                     {value.isPerson ? "Login" : "Register"}
