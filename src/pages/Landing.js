@@ -1,14 +1,14 @@
 import React from "react";
 import main from "../assets/images/main.svg";
-import logo from "../assets/images/logo.png";
 import Wrapper from "../assets/wrappers/LandingCss";
+import { Link } from "react-router-dom";
+import { Logo } from "../component";
 
 const LandingPage = () => {
     return (
         <Wrapper>
             <nav>
-                <img src={logo} alt='logo' className='logo' />
-                <h1>JOBSEARCH</h1>
+                <Logo />
             </nav>
             <div className='container pages'>
                 <div className='info'>
@@ -21,7 +21,9 @@ const LandingPage = () => {
                         dui aliquam, mattis dui et, dictum nisi.Maecenas feugiat
                         sodales leo, at imperdiet sapien sagittis at.
                     </p>
-                    <button className='btn btn-hero'>Login/Register</button>
+                    <Link to='/register'>
+                        <button className='btn btn-hero'>Login/Register</button>
+                    </Link>
                 </div>
                 <img src={main} alt='main-img' className='img main-img'></img>
             </div>

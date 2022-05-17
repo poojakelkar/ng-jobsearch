@@ -1,6 +1,6 @@
 import "./App.css";
 import { LandingPage, Error, Dashboard, Register } from "./pages";
-import { BrowserRouter, routes, route, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
     return (
