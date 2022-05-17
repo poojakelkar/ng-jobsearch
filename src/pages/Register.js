@@ -58,7 +58,7 @@ const Register = () => {
                     name='password'
                     value={value.password}
                 />
-                <button type='button' className='btn btn-block'>
+                <button type='submit' className='btn btn-block'>
                     Submit
                 </button>
                 <p className='title'>
