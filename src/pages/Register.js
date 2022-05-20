@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/LandingCss";
 import { FormInput, Logo } from "../component";
 
@@ -22,7 +23,7 @@ const Register = () => {
         e.preventDefault();
         const { name, email, password, isPerson } = value;
         if (!email || !password || (!isPerson && !name)) {
-            console.log("please");
+            toast.error("Please fill all Fileds.");
         }
     };
 
