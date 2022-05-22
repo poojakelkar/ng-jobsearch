@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/LandingCss";
 import { FormInput, Logo } from "../component";
+import { loginUser, registerUser } from "../features/user/userSlice";
 
 const initialState = {
     name: "",
@@ -12,11 +14,15 @@ const initialState = {
 const Register = () => {
     const [value, setValue] = useState(initialState);
 
+    const { user, isLoading } = useSelector((store) => store.user);
+    console.log({ user, isLoading });
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         console.log(`${name},${value}`);
-        setValue({ ...value, [name]: value });
+        setValue((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (e) => {
@@ -24,7 +30,13 @@ const Register = () => {
         const { name, email, password, isPerson } = value;
         if (!email || !password || (!isPerson && !name)) {
             toast.error("Please fill all Fileds.");
+            return;
         }
+        if (isPerson) {
+            dispatch(loginUser({ email: email, password: password }));
+            return;
+        }
+        dispatch(registerUser({ name, email, password }));
     };
 
     const togglePerson = () => {
