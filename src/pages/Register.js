@@ -75,7 +75,7 @@ const Register = () => {
                     type='submit'
                     className='btn btn-block'
                     disabled={isLoading}>
-                    Submit
+                    {isLoading ? "Loading..." : "Submit"}
                 </button>
                 <p className='title'>
                     {value.isPerson ? "Not account yet? " : "Already Account? "}
