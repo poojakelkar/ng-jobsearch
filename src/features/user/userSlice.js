@@ -3,18 +3,19 @@ import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 
 const initialState = {
-    isLoading: false,
     user: null,
+    isLoading: false,
 };
 
 export const registerUser = createAsyncThunk(
     "user/registerUser",
     async (user, thunkAPI) => {
         try {
-            const resp = customFetch.post("/auth/testingRegister", user);
+            const resp = customFetch.post("/auth/register", user);
+            return resp.data;
         } catch (error) {
             toast.error(error.response.data.msg);
-            console.log("error", error.response);
+            return thunkAPI.rejectWithValue(error.response.data.msg);
         }
     }
 );
@@ -28,7 +29,21 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers: {},
+    extraReducers: {
+        [registerUser.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [registerUser.fulfilled]: (state, { payload }) => {
+            const { user } = payload;
+            state.isLoading = false;
+            state.user = user;
+            toast.success(`Successfully Login ,${user.name}`);
+        },
+        [registerUser.rejected]: (state, { payload }) => {
+            state.isLoading = false;
+            toast.error(payload);
+        },
+    },
 });
 
 export default userSlice.reducer;
