@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/LandingCss";
 import { FormInput, Logo } from "../component";
@@ -17,6 +18,8 @@ const Register = () => {
     const { user, isLoading } = useSelector((store) => store.user);
     console.log({ user, isLoading });
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -42,6 +45,12 @@ const Register = () => {
     const togglePerson = () => {
         setValue({ ...value, isPerson: !value.isPerson });
     };
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigate("/");
+        }, 2000);
+    }, [user]);
     return (
         <Wrapper className='full-page'>
             <form className='form' onSubmit={handleSubmit}>
