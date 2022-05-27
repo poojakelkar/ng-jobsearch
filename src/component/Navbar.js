@@ -17,8 +17,9 @@ export const Navbar = () => {
                     <FaAlignLeft />
                 </button>
             </div>
-            <div>
+            <div className='logo'>
                 <Logo />
+                <h1 className='logo-text'>Dashboard</h1>
             </div>
             <div className='btn-container'>
                 <button
