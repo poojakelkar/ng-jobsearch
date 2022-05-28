@@ -8,6 +8,7 @@ import NavbarLinks from "./NavbarLinks";
 
 export const SmallSidebar = () => {
     const { isSidebarOpen } = useSelector((store) => store.user);
+    console.log(isSidebarOpen, "bye");
     const dispatch = useDispatch();
 
     const toggle = () => {

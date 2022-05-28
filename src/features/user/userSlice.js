@@ -29,7 +29,7 @@ export const loginUser = createAsyncThunk(
     "user/loginUser",
     async (user, thunkAPI) => {
         try {
-            const resp = customFetch.post("/auth/login", user);
+            const resp = await customFetch.post("/auth/login", user);
             return resp.data;
         } catch (error) {
             toast.error(error.response.data.msg);
@@ -49,6 +49,7 @@ const userSlice = createSlice({
             removeUserFromLocalStorage();
         },
         toggleSidebar: (state) => {
+            console.log("hii");
             state.isSidebarOpen = !state.isSidebarOpen;
         },
     },
@@ -70,12 +71,14 @@ const userSlice = createSlice({
         [loginUser.pending]: (state) => {
             state.isLoading = true;
         },
-        [loginUser.fulfilled]: (state, { payload }) => {
-            const { user } = payload;
+        [loginUser.fulfilled]: (state, { ...payload }) => {
+            const { ...user } = payload;
+            console.log({ user, payload });
+
             state.isLoading = false;
             state.user = user;
             addUserToLocalStorage(user);
-            toast.success(`Welcome Back ,${user.name}`);
+            toast.success(`Welcome Back ,${user?.payload?.user?.name}`);
         },
         [loginUser.rejected]: (state, { payload }) => {
             state.isLoading = false;

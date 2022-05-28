@@ -9,9 +9,11 @@ export const Navbar = () => {
     const { user } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     const [logoutbtn, setLogoutbtn] = useState(false);
+    console.log({ user });
 
     const togglebtn = () => {
         dispatch(toggleSidebar());
+        console.log("hello");
     };
     return (
         <Wrapper>
@@ -33,7 +35,7 @@ export const Navbar = () => {
                     className='btn'
                     onClick={() => setLogoutbtn(!logoutbtn)}>
                     <FaUserCircle />
-                    {user?.name}
+                    {user?.payload?.user?.name}
                     <FaCaretDown />
                 </button>
                 <div
@@ -43,7 +45,7 @@ export const Navbar = () => {
                     <button
                         type='button'
                         className='dropdown-btn'
-                        onClick={() => dispatch(() => logoutuser())}>
+                        onClick={() => dispatch(logoutuser())}>
                         Logout
                     </button>
                 </div>

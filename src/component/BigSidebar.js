@@ -6,12 +6,13 @@ import NavbarLinks from "./NavbarLinks";
 
 export const BigSidebar = () => {
     const { isSidebarOpen } = useSelector((store) => store.user);
+
     return (
         <Wrapper>
             <div
                 className={
                     isSidebarOpen
-                        ? "sidebar-container show-hide"
+                        ? "sidebar-container show-sidebar"
                         : "sidebar-container"
                 }>
                 <div className='content'>
