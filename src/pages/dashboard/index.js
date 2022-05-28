@@ -4,4 +4,4 @@ import { Profile } from "./Profile";
 import { SharedLayout } from "./SharedLayout";
 import { Stats } from "./Stats";
 
-export { Profile, AddJobs, Stats, AllJobs, SharedLayout };
+export { Profile, AddJobs, AllJobs, Stats, SharedLayout };
