@@ -44,6 +44,7 @@ const Wrapper = styled.aside`
         padding-top: 2rem;
         display: flex;
         flex-direction: column;
+        z-index: 99;
     }
     .nav-link {
         display: flex;
