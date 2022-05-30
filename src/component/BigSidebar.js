@@ -5,7 +5,6 @@ import Wrapper from "../assets/wrappers/BigSidebar";
 import { toggleSidebar } from "../features/user/userSlice";
 import links from "../utils/links";
 import { Logo } from "./Logo";
-import NavbarLinks from "./NavbarLinks";
 
 export const BigSidebar = () => {
     const { isSidebarOpen } = useSelector((store) => store.user);

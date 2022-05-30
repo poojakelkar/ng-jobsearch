@@ -6,7 +6,6 @@ import Wrapper from "../assets/wrappers/SmallSidebar";
 import { toggleSidebar } from "../features/user/userSlice";
 import links from "../utils/links";
 import { Logo } from "./Logo";
-import NavbarLinks from "./NavbarLinks";
 
 export const SmallSidebar = () => {
     const { isSidebarOpen } = useSelector((store) => store.user);
