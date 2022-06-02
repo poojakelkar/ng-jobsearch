@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Wrapper from "../../assets/wrappers/DashboardInputFormPage";
 import { FormInput } from "../../component/FormInput";
 import FormSelect from "../../component/FormSelect";
-import { handleChange } from "../../features/job/jobSlice";
+import { clearValues, handleChange } from "../../features/job/jobSlice";
 
 export const AddJobs = () => {
     const {
@@ -73,7 +73,7 @@ export const AddJobs = () => {
                         <button
                             type='button'
                             className='btn btn-block clear-btn'
-                            onClick={() => console.log("clear value")}>
+                            onClick={() => dispatch(clearValues())}>
                             Clear Value
                         </button>
                     </div>
