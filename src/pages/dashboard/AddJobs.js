@@ -1,5 +1,91 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Wrapper from "../../assets/wrappers/DashboardInputFormPage";
+import { FormInput } from "../../component/FormInput";
+import FormSelect from "../../component/FormSelect";
 
 export const AddJobs = () => {
-    return <h1>AddJobs</h1>;
+    const {
+        isLoading,
+        position,
+        company,
+        jobLocation,
+        jobType,
+        jobTypeOptions,
+        status,
+        statusOption,
+        isEditing,
+        editJobId,
+    } = useSelector((store) => store.job);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!position || !company || !jobLocation) {
+            toast.error("Please fill all the fileds");
+            return;
+        }
+    };
+
+    const handleJobInputs = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name, value);
+    };
+
+    return (
+        <Wrapper>
+            <form className='form'>
+                <h3>{isEditing ? "Edit Job" : "Add Job"}</h3>
+                <div className='form-center'>
+                    <FormInput
+                        type='text'
+                        name='position'
+                        value={position}
+                        handleChange={handleJobInputs}></FormInput>
+                    <FormInput
+                        type='text'
+                        name='company'
+                        value={company}
+                        handleChange={handleJobInputs}></FormInput>
+                    <FormInput
+                        type='text'
+                        name='jobLocation'
+                        value={jobLocation}
+                        handleChange={handleJobInputs}></FormInput>
+
+                    <FormSelect
+                        name='status'
+                        value={status}
+                        handleChange={handleJobInputs}
+                        list={statusOption}></FormSelect>
+
+                    <FormSelect
+                        name='jobType'
+                        labelText='job type'
+                        value={jobType}
+                        handleChange={handleJobInputs}
+                        list={jobTypeOptions}></FormSelect>
+
+                    <div className='btn-container'>
+                        <button
+                            type='button'
+                            className='btn btn-block clear-btn'
+                            onClick={() => console.log("clear value")}>
+                            Clear Value
+                        </button>
+                    </div>
+                    <div className='btn-container'>
+                        <button
+                            type='submit'
+                            className='btn btn-block submit-btn'
+                            onClick={handleSubmit}
+                            disabled={isLoading}>
+                            submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </Wrapper>
+    );
 };
