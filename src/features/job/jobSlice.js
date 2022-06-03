@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 import { logoutuser } from "../user/userSlice";
+import { getUser } from "../../utils/localStorage";
 
 const initialState = {
     isLoading: false,
@@ -20,6 +21,7 @@ export const createJob = createAsyncThunk(
     "job/createJob",
     async (job, thunkAPI) => {
         try {
+            console.log(getUser());
             const resp = await customFetch.post("/jobs", job, {
                 headers: {
                     authorization: `Bearer ${
@@ -47,7 +49,7 @@ const jobSlice = createSlice({
             state[name] = value;
         },
         clearValues: () => {
-            return initialState;
+            return { ...initialState };
         },
     },
     extraReducers: {
