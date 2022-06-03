@@ -45,7 +45,9 @@ export const Navbar = () => {
                     <button
                         type='button'
                         className='dropdown-btn'
-                        onClick={() => dispatch(logoutuser())}>
+                        onClick={() =>
+                            dispatch(logoutuser("Successfully Logout"))
+                        }>
                         Logout
                     </button>
                 </div>
