@@ -29,7 +29,7 @@ const JobsContainer = () => {
             <div className='jobs'>
                 {jobs.map((job) => {
                     console.log(job);
-                    return <Job key={job._id} {...jobs}></Job>;
+                    return <Job key={job._id} {...job}></Job>;
                 })}
             </div>
         </Wrapper>
