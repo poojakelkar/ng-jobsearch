@@ -70,7 +70,6 @@ const Wrapper = styled.article`
             grid-template-columns: 1fr 1fr;
         }
     }
-
     .status {
         border-radius: var(--borderRadius);
         text-transform: capitalize;
@@ -88,6 +87,7 @@ const Wrapper = styled.article`
         letter-spacing: var(--letterSpacing);
         cursor: pointer;
         height: 30px;
+        margin: 1rem;
     }
     .edit-btn {
         color: var(--green-dark);

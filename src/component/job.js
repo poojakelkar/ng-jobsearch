@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Wrapper from "../assets/wrappers/Job";
+import { Link } from "react-router-dom";
 
 const Job = ({
     _id,
@@ -12,7 +13,7 @@ const Job = ({
     status,
 }) => {
     const disptach = useDispatch();
-    console.log(company);
+    console.log(status);
     return (
         <Wrapper>
             <header>
@@ -22,6 +23,27 @@ const Job = ({
                     <p>{company}</p>
                 </div>
             </header>
+            <div className='content'>
+                <div className='content-center'>
+                    <h4>more content</h4>
+                    <div className={`status ${status}`}>{status}</div>
+                </div>
+            </div>
+            <footer>
+                <div className='actions'>
+                    <Link
+                        to='/add-jobs'
+                        className='btn edit-btn'
+                        onClick={() => console.log("edit")}>
+                        Edit
+                    </Link>
+                    <button
+                        className='btn delete-btn'
+                        onClick={() => console.log("delete")}>
+                        Delete
+                    </button>
+                </div>
+            </footer>
         </Wrapper>
     );
 };
