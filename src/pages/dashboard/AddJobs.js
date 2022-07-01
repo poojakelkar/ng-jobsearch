@@ -8,6 +8,7 @@ import {
     clearValues,
     createJob,
     handleChange,
+    editJob,
 } from "../../features/job/jobSlice";
 
 export const AddJobs = () => {
@@ -26,12 +27,14 @@ export const AddJobs = () => {
     const { user } = useSelector((store) => store.user);
 
     useEffect(() => {
-        dispatch(
-            handleChange({
-                name: "jobLocation",
-                value: user.payload.user.location,
-            })
-        );
+        if (!isEditing) {
+            dispatch(
+                handleChange({
+                    name: "jobLocation",
+                    value: user.payload.user.location,
+                })
+            );
+        }
     }, []);
 
     const dispatch = useDispatch();
@@ -39,6 +42,15 @@ export const AddJobs = () => {
         e.preventDefault();
         if (!position || !company || !jobLocation) {
             toast.error("Please fill all the fileds");
+            return;
+        }
+        if (isEditing) {
+            dispatch(
+                editJob({
+                    jobId: editJobId,
+                    job: { position, company, jobLocation, jobType, status },
+                })
+            );
             return;
         }
         dispatch(
