@@ -17,7 +17,7 @@ const Job = ({
     status,
 }) => {
     const disptach = useDispatch();
-    const date = moment(createdAt).format("MMM DO,YYYY");
+    const date = moment(createdAt).format("MMM D,YYYY");
 
     console.log(status);
     return (
