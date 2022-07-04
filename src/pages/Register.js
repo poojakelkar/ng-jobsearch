@@ -88,6 +88,21 @@ const Register = () => {
                     disabled={isLoading}>
                     {isLoading ? "Loading..." : "Submit"}
                 </button>
+                <button
+                    type='button'
+                    className='btn btn-block btn-hipster'
+                    disabled={isLoading}
+                    onClick={() =>
+                        dispatch(
+                            loginUser({
+                                email: "testUser@gmail.com",
+                                password: "secret",
+                            })
+                        )
+                    }>
+                    {isLoading ? "Loading.." : "Demo App"}
+                </button>
+
                 <p className='title'>
                     {value.isPerson ? "Not account yet? " : "Already Account? "}
                     <button
