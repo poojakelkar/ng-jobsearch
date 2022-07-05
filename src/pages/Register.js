@@ -95,7 +95,7 @@ const Register = () => {
                     onClick={() =>
                         dispatch(
                             loginUser({
-                                email: "testUser@gmail.com",
+                                email: "testUser@test.com",
                                 password: "secret",
                             })
                         )
