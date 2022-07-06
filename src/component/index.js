@@ -6,6 +6,8 @@ import { BigSidebar } from "./BigSidebar";
 import FormSelect from "./FormSelect";
 import JobsContainer from "./JobsContainer";
 import SearchContainer from "./SearchContainer";
+import StatsContainer from "./StatsContainer";
+import ChartsContainer from "./ChartsContainer";
 
 export {
     Logo,
@@ -16,4 +18,6 @@ export {
     FormSelect,
     JobsContainer,
     SearchContainer,
+    StatsContainer,
+    ChartsContainer,
 };
