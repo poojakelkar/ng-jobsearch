@@ -1,7 +1,6 @@
 import React from "react";
 import {
-    Area,
-    AreaChart,
+    BarChart,
     CartesianGrid,
     ResponsiveContainer,
     Tooltip,
@@ -10,7 +9,7 @@ import {
     Bar,
 } from "recharts";
 
-const BarChart = ({ data }) => {
+const BarChartComponent = ({ data }) => {
     return (
         <ResponsiveContainer width='100%' height={300}>
             <BarChart data={data} margin={{ top: 50 }}>
@@ -18,10 +17,10 @@ const BarChart = ({ data }) => {
                 <XAxis dataKey='date'></XAxis>
                 <YAxis allowDecimals={false} />
                 <Tooltip />
-                <Bar dataKey='count' fill='#bef8fd' barSize={75} />
+                <Bar dataKey='count' fill='#2cb1cb' barSize={75} />
             </BarChart>
         </ResponsiveContainer>
     );
 };
 
-export default BarChart;
+export default BarChartComponent;
