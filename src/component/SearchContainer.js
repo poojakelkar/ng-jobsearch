@@ -7,7 +7,7 @@ import FormSelect from "./FormSelect";
 const SearchContainer = () => {
     console.log("hello world");
 
-    const { isLoading, search, searchStatus, searchType, sort, sortOption } =
+    const { isLoading, search, searchStatus, searchType, sort, sortOptions } =
         useSelector((store) => store.allJobs);
     const dispatch = useDispatch();
 
@@ -31,10 +31,29 @@ const SearchContainer = () => {
                     <FormSelect
                         labelText='status'
                         name='searchStatus'
-                        value={searchStatus}
+                        value={searchType}
                         handleChange={handleSearch}
-                        list={statusOption}
+                        list={["all", ...statusOption]}
                     />
+                    <FormSelect
+                        labelText='status'
+                        name='searchStatus'
+                        value={searchType}
+                        handleChange={handleSearch}
+                        list={["all", ...jobTypeOptions]}
+                    />
+                    <FormSelect
+                        name='sort'
+                        value={sort}
+                        handleChange={handleSearch}
+                        list={sortOptions}
+                    />
+                    <button
+                        className='btn btn-block btn-danger'
+                        disabled={isLoading}
+                        onClick={handleSubmit}>
+                        Clear Filter
+                    </button>
                 </div>
             </form>
         </Wrapper>
