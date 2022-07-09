@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../assets/wrappers/SearchContainer";
+import { handleChange, clearFilters } from "../features/allJobs/allJobsSlice";
 import { FormInput } from "./FormInput";
 import FormSelect from "./FormSelect";
 
@@ -13,9 +14,13 @@ const SearchContainer = () => {
 
     const { jobTypeOptions, statusOption } = useSelector((store) => store.job);
 
-    const handleSearch = (e) => {};
+    const handleSearch = (e) => {
+        if (isLoading) return;
+        dispatch(handleChange({ name: e.target.name, value: e.target.value }));
+    };
     const handleSubmit = (e) => {
         e.preventValue();
+        dispatch(clearFilters());
     };
     return (
         <Wrapper>
@@ -36,7 +41,7 @@ const SearchContainer = () => {
                         list={["all", ...statusOption]}
                     />
                     <FormSelect
-                        labelText='status'
+                        labelText='Type'
                         name='searchStatus'
                         value={searchType}
                         handleChange={handleSearch}
