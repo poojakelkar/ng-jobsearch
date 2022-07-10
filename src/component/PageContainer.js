@@ -22,16 +22,21 @@ const PageContainer = () => {
                 <HiChevronDoubleLeft />
                 Prev
             </button>
-            {pages.map((pageNumber) => {
-                return (
-                    <button
-                        type='button'
-                        key={pageNumber}
-                        onClick={() => console.log("changed Page")}>
-                        {pageNumber}
-                    </button>
-                );
-            })}
+            <div className='btn-container'>
+                {pages.map((pageNumber) => {
+                    return (
+                        <button
+                            type='button'
+                            key={pageNumber}
+                            className={
+                                pageNumber === page ? "pageBtn active" : page
+                            }
+                            onClick={() => console.log("changed Page")}>
+                            {pageNumber}
+                        </button>
+                    );
+                })}
+            </div>
             <button className='prev-btn' onClick={nextPage}>
                 <HiChevronDoubleRight />
                 Next
