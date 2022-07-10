@@ -36,13 +36,13 @@ const SearchContainer = () => {
                     <FormSelect
                         labelText='status'
                         name='searchStatus'
-                        value={searchType}
+                        value={searchStatus}
                         handleChange={handleSearch}
                         list={["all", ...statusOption]}
                     />
                     <FormSelect
                         labelText='Type'
-                        name='searchStatus'
+                        name='searchType'
                         value={searchType}
                         handleChange={handleSearch}
                         list={["all", ...jobTypeOptions]}

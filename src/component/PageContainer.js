@@ -24,13 +24,16 @@ const PageContainer = () => {
                 Prev
             </button>
             <div className='btn-container'>
-                {pages.map((pageNumber) => {
+                {pages.map((pageNumber, index) => {
+                    console.log({ page, pageNumber, index });
                     return (
                         <button
                             type='button'
                             key={pageNumber}
                             className={
-                                pageNumber === page ? "pageBtn active" : "page"
+                                pageNumber === page
+                                    ? "pageBtn active"
+                                    : "pageBtn"
                             }
                             onClick={() => dispatch(changePages(pageNumber))}>
                             {pageNumber}
