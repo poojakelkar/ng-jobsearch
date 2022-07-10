@@ -12,10 +12,18 @@ const PageContainer = () => {
         return index + 1;
     });
     const nextPage = () => {
-        console.log("next page");
+        let newPage = page + 1;
+        if (newPage > numOfPages) {
+            newPage = 1;
+        }
+        dispatch(changePages(newPage));
     };
     const prevPage = () => {
-        console.log("prev page");
+        let newPage = page - 1;
+        if (newPage < 1) {
+            newPage = numOfPages;
+        }
+        dispatch(changePages(newPage));
     };
     return (
         <Wrapper>
