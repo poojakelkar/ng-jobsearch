@@ -6,15 +6,23 @@ import Job from "./Job";
 import Loading from "./Loading";
 import PageContainer from "./PageContainer";
 const JobsContainer = () => {
-    const { jobs, isLoading, page, totalJobs, numOfPages } = useSelector(
-        (store) => store.allJobs
-    );
+    const {
+        jobs,
+        isLoading,
+        page,
+        totalJobs,
+        numOfPages,
+        searchStatus,
+        searchType,
+        sort,
+        search,
+    } = useSelector((store) => store.allJobs);
     const dispatch = useDispatch();
     console.log(numOfPages);
 
     useEffect(() => {
         dispatch(getAllJobs());
-    }, []);
+    }, [page, search, searchStatus, searchType, sort]);
 
     if (isLoading) {
         return <Loading />;
