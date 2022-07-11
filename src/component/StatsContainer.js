@@ -6,7 +6,7 @@ import StatItem from "./StatItem";
 
 const StatsContainer = () => {
     const { stats } = useSelector((store) => store.allJobs);
-
+    console.log({ stats });
     const defaultStats = [
         {
             title: "Pending Application",
