@@ -1,4 +1,4 @@
-import customFetch from "../../utils/axios";
+import customFetch, { checkForUnauthorizeResponse } from "../../utils/axios";
 
 export const getAllJobsThunk = async (_, thunkAPI) => {
     const { page, search, searchStatus, searchType, sort } =
@@ -12,7 +12,7 @@ export const getAllJobsThunk = async (_, thunkAPI) => {
         console.log(resp.data);
         return resp.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue("There was an error");
+        return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };
 
@@ -22,6 +22,6 @@ export const showStatsThunk = async (_, thunkAPI) => {
         console.log(resp.data);
         return resp.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.resp.data.msg);
+        return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };

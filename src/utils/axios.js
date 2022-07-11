@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clearStore } from "../features/user/userSlice";
 import { getUser } from "./localStorage";
 
 const customFetch = axios.create({
@@ -14,5 +15,12 @@ customFetch.interceptors.request.use((config) => {
     }
     return config;
 });
+export const checkForUnauthorizeResponse = (error, thunkAPI) => {
+    if (error.response.status === 401) {
+        thunkAPI.dispatch(clearStore());
+        thunkAPI.rejectWithValue("Unauthorized Access...Logging Out");
+    }
+    return thunkAPI.rejectWithValue(error.response.data.msg);
+};
 
 export default customFetch;

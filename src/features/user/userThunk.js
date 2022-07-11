@@ -1,6 +1,6 @@
 import { clear } from "@testing-library/user-event/dist/clear";
 import { toast } from "react-toastify";
-import customFetch from "../../utils/axios";
+import customFetch, { checkForUnauthorizeResponse } from "../../utils/axios";
 import { clearValues } from "../job/jobSlice";
 import { logoutuser } from "./userSlice";
 
@@ -10,7 +10,7 @@ export const registerUserThunk = async (url, user, thunkAPI) => {
         return resp.data;
     } catch (error) {
         toast.error(error.response.data.msg);
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };
 
@@ -20,7 +20,7 @@ export const loginUserThunk = async (url, user, thunkAPI) => {
         return resp.data;
     } catch (error) {
         toast.error(error.response.data.msg);
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };
 
@@ -36,7 +36,7 @@ export const updateUserThunk = async (url, user, thunkAPI) => {
                 "Unauthorized User Access..Logging Out"
             );
         }
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };
 
