@@ -1,5 +1,7 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
+import { clearValues } from "../job/jobSlice";
 import { logoutuser } from "./userSlice";
 
 export const registerUserThunk = async (url, user, thunkAPI) => {
@@ -35,5 +37,16 @@ export const updateUserThunk = async (url, user, thunkAPI) => {
             );
         }
         return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+};
+
+export const clearStoreThunk = async (message, thunkAPI) => {
+    try {
+        thunkAPI.dispatch(logoutuser(message));
+        thunkAPI.dispatch(clear);
+        thunkAPI.dispatch(clearValues());
+        return Promise.resolve();
+    } catch (error) {
+        return Promise.reject();
     }
 };
