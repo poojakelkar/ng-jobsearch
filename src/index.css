@@ -157,6 +157,7 @@ ul {
     transition: var(--transition);
     text-transform: capitalize;
     display: inline-block;
+    margin-top: 1rem;
 }
 .btn:hover {
     background: var(--primary-700);
