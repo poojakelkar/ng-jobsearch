@@ -1,9 +1,6 @@
 import { showLoading, hideLoading, getAllJobs } from "../allJobs/allJobsSlice";
 import customFetch, { checkForUnauthorizeResponse } from "../../utils/axios";
 import { clearValues } from "./jobSlice";
-import { getUser } from "../../utils/localStorage";
-import { logoutuser } from "../user/userSlice";
-import authHeader from "../../utils/authHeader";
 
 export const createJobThunk = async (job, thunkAPI) => {
     try {
