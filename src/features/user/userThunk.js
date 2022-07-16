@@ -1,4 +1,4 @@
-import { clear } from "@testing-library/user-event/dist/clear";
+import clearAllJobsFilter from "../allJobs/allJobsSlice";
 import { toast } from "react-toastify";
 import customFetch, { checkForUnauthorizeResponse } from "../../utils/axios";
 import { clearValues } from "../job/jobSlice";
@@ -43,7 +43,7 @@ export const updateUserThunk = async (url, user, thunkAPI) => {
 export const clearStoreThunk = async (message, thunkAPI) => {
     try {
         thunkAPI.dispatch(logoutuser(message));
-        thunkAPI.dispatch(clear);
+        thunkAPI.dispatch(clearAllJobsFilter());
         thunkAPI.dispatch(clearValues());
         return Promise.resolve();
     } catch (error) {
