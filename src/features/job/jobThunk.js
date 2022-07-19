@@ -7,6 +7,7 @@ import authHeader from "../../utils/authHeader";
 
 export const createJobThunk = async (job, thunkAPI) => {
     try {
+        console.log(getUser());
         const resp = await customFetch.post("/jobs", job, authHeader(thunkAPI));
         thunkAPI.dispatch(clearValues());
         return resp.data;
