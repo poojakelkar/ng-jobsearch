@@ -1,21 +1,13 @@
 import { showLoading, hideLoading, getAllJobs } from "../allJobs/allJobsSlice";
 import customFetch, { checkForUnauthorizeResponse } from "../../utils/axios";
 import { clearValues } from "./jobSlice";
-import { getUser } from "../../utils/localStorage";
-import { logoutuser } from "../user/userSlice";
-import authHeader from "../../utils/authHeader";
 
 export const createJobThunk = async (job, thunkAPI) => {
     try {
-        console.log(getUser());
-        const resp = await customFetch.post("/jobs", job, authHeader(thunkAPI));
+        const resp = await customFetch.post("/jobs", job);
         thunkAPI.dispatch(clearValues());
-        return resp.data;
+        return resp.data.msg;
     } catch (error) {
-        if (error.response.status === 401) {
-            thunkAPI.dispatch(logoutuser());
-            thunkAPI.rejectWithValue("Unauthorized Access...Logging Out");
-        }
         return checkForUnauthorizeResponse(error, thunkAPI);
     }
 };

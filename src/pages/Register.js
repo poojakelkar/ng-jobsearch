@@ -54,66 +54,74 @@ const Register = () => {
         }
     }, [user]);
     return (
-        <Wrapper className='full-page'>
-            <form className='form' onSubmit={handleSubmit}>
-                <Logo />
-                <h1 className='title'>
-                    {value.isPerson ? "Login" : "Register"}
-                </h1>
-                {!value.isPerson && (
+        <>
+            <p>
+                Admin: email: pooja@gmail.com, password: secret,<br></br>
+                User : email: testUser@test.com, password: secret
+            </p>
+            <Wrapper className='full-page'>
+                <form className='form' onSubmit={handleSubmit}>
+                    <Logo />
+                    <h1 className='title'>
+                        {value.isPerson ? "Login" : "Register"}
+                    </h1>
+                    {!value.isPerson && (
+                        <FormInput
+                            type='text'
+                            handleChange={handleChange}
+                            name='name'
+                            value={value.name}
+                        />
+                    )}
+                    {/* email  */}
                     <FormInput
-                        type='text'
+                        type='email'
                         handleChange={handleChange}
-                        name='name'
-                        value={value.name}
+                        name='email'
+                        value={value.email}
                     />
-                )}
-                {/* email  */}
-                <FormInput
-                    type='email'
-                    handleChange={handleChange}
-                    name='email'
-                    value={value.email}
-                />
-                {/* password */}
-                <FormInput
-                    type='password'
-                    handleChange={handleChange}
-                    name='password'
-                    value={value.password}
-                />
-                <button
-                    type='submit'
-                    className='btn btn-block'
-                    disabled={isLoading}>
-                    {isLoading ? "Loading..." : "Submit"}
-                </button>
-                <button
-                    type='button'
-                    className='btn btn-block btn-hipster'
-                    disabled={isLoading}
-                    onClick={() =>
-                        dispatch(
-                            loginUser({
-                                email: "testUser@test.com",
-                                password: "secret",
-                            })
-                        )
-                    }>
-                    {isLoading ? "Loading.." : "Demo App"}
-                </button>
-
-                <p className='title'>
-                    {value.isPerson ? "Not account yet? " : "Already Account? "}
+                    {/* password */}
+                    <FormInput
+                        type='password'
+                        handleChange={handleChange}
+                        name='password'
+                        value={value.password}
+                    />
+                    <button
+                        type='submit'
+                        className='btn btn-block'
+                        disabled={isLoading}>
+                        {isLoading ? "Loading..." : "Submit"}
+                    </button>
                     <button
                         type='button'
-                        className='btn'
-                        onClick={togglePerson}>
-                        {value.isPerson ? "Register" : "Login"}
+                        className='btn btn-block btn-hipster'
+                        disabled={isLoading}
+                        onClick={() =>
+                            dispatch(
+                                loginUser({
+                                    email: "testUser@test.com",
+                                    password: "secret",
+                                })
+                            )
+                        }>
+                        {isLoading ? "Loading.." : "Demo App"}
                     </button>
-                </p>
-            </form>
-        </Wrapper>
+
+                    <p className='title'>
+                        {value.isPerson
+                            ? "Not account yet? "
+                            : "Already Account? "}
+                        <button
+                            type='button'
+                            className='btn'
+                            onClick={togglePerson}>
+                            {value.isPerson ? "Register" : "Login"}
+                        </button>
+                    </p>
+                </form>
+            </Wrapper>
+        </>
     );
 };
 
